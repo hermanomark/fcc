@@ -379,6 +379,58 @@ function mutation(arr) {
 
 mutation(["Mary", "Aarmy"])
 
-// -----------------------------------------------
+// mutation(["hello", "hey"]) should return false.
+// mutation(["hello", "Hello"]) should return true.
+// mutation(["zyxwvutsrqponmlkjihgfedcba", "qrstu"]) should return true.
+// mutation(["Mary", "Army"]) should return true.
+// mutation(["Mary", "Aarmy"]) should return true.
+// mutation(["Alien", "line"]) should return true.
+// mutation(["floor", "for"]) should return true.
+// mutation(["hello", "neo"]) should return false.
+// mutation(["voodoo", "no"]) should return false.
 
+// -----------------------------------------------
+// Basic Algorithm Scripting: Chunky Monkey
+// Write a function that splits an array (first argument) into groups the length of size (second argument) and returns them as a two-dimensional array.
+
+function chunkArrayInGroups(arr, size) {
+
+  let temp = [];
+  let result = [];
+
+  for (let a = 0; a < arr.length; a++) {
+    if (a % size !== size - 1)
+      temp.push(arr[a]);
+    else {
+      temp.push(arr[a]);
+      result.push(temp);
+      temp = [];
+    }
+  }
+
+  if (temp.length !== 0)
+    result.push(temp);
+  return result;
+}
+
+chunkArrayInGroups([0, 1, 2, 3, 4, 5, 6, 7, 8], 2);
+// should return [[0, 1, 2, 3], [4, 5, 6, 7], [8]].
+
+// chunkArrayInGroups(["a", "b", "c", "d"], 2) should return [["a", "b"], ["c", "d"]].
+// chunkArrayInGroups([0, 1, 2, 3, 4, 5], 3) should return [[0, 1, 2], [3, 4, 5]].
+// chunkArrayInGroups([0, 1, 2, 3, 4, 5], 2) should return [[0, 1], [2, 3], [4, 5]].
+// chunkArrayInGroups([0, 1, 2, 3, 4, 5], 4) should return [[0, 1, 2, 3], [4, 5]].
+// chunkArrayInGroups([0, 1, 2, 3, 4, 5, 6], 3) should return [[0, 1, 2], [3, 4, 5], [6]].
+// chunkArrayInGroups([0, 1, 2, 3, 4, 5, 6, 7, 8], 4) should return [[0, 1, 2, 3], [4, 5, 6, 7], [8]].
+// chunkArrayInGroups([0, 1, 2, 3, 4, 5, 6, 7, 8], 2) should return [[0, 1], [2, 3], [4, 5], [6, 7], [8]].
+
+
+// Intermediate Solution:
+function chunkArrayInGroups(arr, size) {
+  var newArr = [];
+  while (arr.length) {
+    newArr.push(arr.splice(0,size));
+  }
+  return newArr;
+}
 
